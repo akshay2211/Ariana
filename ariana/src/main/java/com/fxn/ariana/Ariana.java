@@ -32,7 +32,7 @@ public class Ariana {
     }
 
     public static Drawable drawable(final int[] colorBoxes, final float[] position) {
-        return drawable(colorBoxes, position, GradientAngle.RIGHT_BOTTOM_TO_LEFT_TOP);
+        return drawable(colorBoxes, position, GradientAngle.LEFT_TOP_TO_RIGHT_BOTTOM);
     }
 
     public static Drawable drawable(final int[] colorBoxes, final GradientAngle gradientAngle) {
@@ -45,6 +45,6 @@ public class Ariana {
     }
 
     public static Drawable drawable(final int[] colorBoxes) {
-        return drawable(colorBoxes, GradientAngle.LEFT_BOTTOM_TO_RIGHT_TOP);
+        return drawable(colorBoxes, GradientAngle.LEFT_TOP_TO_RIGHT_BOTTOM);
     }
 }

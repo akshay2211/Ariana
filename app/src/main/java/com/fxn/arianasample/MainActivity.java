@@ -1,6 +1,5 @@
 package com.fxn.arianasample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,24 +28,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.hideStatusbar(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
-        viewPager.addOnPageChangeListener(new ArianaBackgroundListener(getColors(), imageView, viewPager));
-    }
-
-    private int[] getColors() {
-        return new int[]{
-                Color.parseColor("#2E3192"),
-                Color.parseColor("#1BFFFF"),
-                Color.parseColor("#D4145A"),
-                Color.parseColor("#FBB03B"),
-                Color.parseColor("#FCEE21"),
-                Color.parseColor("#009245"),
-                Color.parseColor("#FFFF96"),
-                Color.parseColor("#D4145A"),
-        };
+        viewPager.addOnPageChangeListener(new ArianaBackgroundListener(Utils.getColors(), imageView, viewPager));
     }
 
     @Override
