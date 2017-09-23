@@ -1,20 +1,20 @@
 package com.fxn.arianasample;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.fxn.ariana.ArianaBackgroundListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
+        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ArianaBackgroundListener(Utils.getColors(), imageView, viewPager));
     }
 
@@ -48,14 +50,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static class ScreenSlidePageFragment extends Fragment {
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
-            return rootView;
-        }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new ScreenSlidePageFragment();
+            return ScreenSlidePageFragment.newInstance(Utils.getTexts()[position]);
         }
 
         @Override

@@ -2,7 +2,7 @@ package com.fxn.ariana;
 
 import android.os.Build;
 import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -10,17 +10,28 @@ import java.util.Arrays;
  * Created by akshay on 22/9/17.
  */
 
-public class ArianaBackgroundListener implements ViewPager.OnPageChangeListener {
-    private final ImageView imageView;
-    private final ViewPager vp;
+public class ArianaTextListener implements ViewPager.OnPageChangeListener {
     public int[] colorBoxes;
+    private TextView textView;
+    private ViewPager vp;
+    private GradientAngle gradientAngle;
     private float[] position;
     private int state = 0;
 
-    public ArianaBackgroundListener(int[] colorBoxes, ImageView imageView, ViewPager vp) {
+    public ArianaTextListener(int[] colorBoxes, TextView textView, ViewPager vp) {
         this.colorBoxes = colorBoxes;
-        this.imageView = imageView;
+        this.textView = textView;
         this.vp = vp;
+        this.gradientAngle = GradientAngle.LEFT_BOTTOM_TO_RIGHT_TOP;
+        setposition();
+    }
+
+
+    public ArianaTextListener(int[] colorBoxes, TextView textView, ViewPager vp, GradientAngle gradientAngle) {
+        this.colorBoxes = colorBoxes;
+        this.textView = textView;
+        this.vp = vp;
+        this.gradientAngle = gradientAngle;
         setposition();
     }
 
@@ -52,7 +63,7 @@ public class ArianaBackgroundListener implements ViewPager.OnPageChangeListener 
                 this.position[position] = -1 * position;
                 this.position[position + 1] = 1 - positionOffset;
             }
-            imageView.setBackground(Ariana.drawable(colorBoxes, ArianaBackgroundListener.this.position));
+            Ariana.setGradient(textView, colorBoxes, ArianaTextListener.this.position, gradientAngle);
 
         }
     }
@@ -71,7 +82,7 @@ public class ArianaBackgroundListener implements ViewPager.OnPageChangeListener 
                 this.position[position] = -1 * position;
                 this.position[position + 1] = 1;
             }
-            imageView.setBackground(Ariana.drawable(colorBoxes, ArianaBackgroundListener.this.position));
+            Ariana.setGradient(textView, colorBoxes, ArianaTextListener.this.position);
         }
     }
 
