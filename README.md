@@ -10,6 +10,9 @@ Demo
 
 ![](media/web_256.png)
 ![](media/media.gif)
+![](media/one.png)
+![](media/two.png)
+![](media/three.png)
 
 Usage
 -----
