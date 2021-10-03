@@ -1,6 +1,6 @@
 
 
-Ariana
+Ariana [obsolete]
 =======
 
 Provide Multiple Gradients in ImageViews and Texts
